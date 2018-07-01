@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+    <div id="app"></div>
+
+    <script src="react.js"></script>
+    <script src="react-dom.js"></script>
+    <script src="browser.min.js"></script>
+    <script type="text/babel">
+    
+    function MailBox(props) {
+        const unreadMessages = props.unreadMessages;
+        return (
+            <div>
+            <h1>Hello!</h1>
+            {unreadMessages.length>0 &&
+            <h2>You have {unreadMessages.length}unread message</h2>
+            }
+            </div>
+        )
+        
+    }
+    const message = ["React","Re:React","Re:Re:React"];
+    ReactDOM.render(
+        <MailBox unreadMessages = {message} />,
+        document.getElementById("app")
+    )
+    
+    </script>
+    
+</body>
+</html>
