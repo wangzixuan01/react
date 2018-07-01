@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script src="react.js"></script>
+    <script src="react-dom.js"></script>
+    <script src="browser.min.js"></script>
+
+    <div id="app"></div>
+
+
+    <script type="text/babel">
+    
+//     function UserGreeting(props) {
+//         return <h1> welcome back; </h1>;
+//     };
+
+//     function GuestGreeting(props) {
+//         return <h1> Please sign in. <h1/> ;
+//     };
+
+// //报错  未知符号
+//     function Greeting(props) {
+
+//         const isLoggedIn = props.isLoggedIn
+//         if(isLoggedIn){
+//             return <UserGreeting />
+//         }
+//         return <GuestGreeting />;
+//     }
+
+//     ReactDOM.render(
+//         <Greeting isLoggedIn={false}  >,
+//         document.getElementById("app")
+//     )
+
+
+
+      //LoginControl  判断登录状态
+      class LoginControl extends React.Component{
+          constructor(props) {
+              super(props);
+              this.handleLoginClick = this.handleLoginClick.bind(this);
+              this.handleLogoutClick = this.handleLogoutClick.bind(this);
+              this.state = {
+                  isLoggedIn:false
+              }
+              
+          }
+          handleLoginClick(){
+              this.setState({
+                  isLoggedIn:true
+              })
+          }
+          handleLogoutClick(){
+              this.setState({
+                  isLoggedOut:false
+              })
+          }
+          render(){
+              const isLoggedIn = this.state.isLoggedIn;
+              let button;
+              if(isLoggedIn){
+                  button = <LogoutButton onClick = {this.handleLogoutClick} />;
+              }else{
+                  button = <LoginButton onClick = {this.handleLoginClick} />;
+              }
+              return (
+                  <div>
+                  <Greeting isLoggedIn = {isLoggedIn}>
+                  {button}
+                  <div/>
+              );
+          }
+          function GuestGreeting(props) {
+              return <h1> welcome back! </h1>;
+          }
+          function UserGreeting(props) {
+              return <h1> Please sign up. </h1> ;
+          }
+          function Greeting(props) {
+              const isLoggedIn = props.isLoggedIn;
+              if(isLoggedIn){
+                  return <UserGreeting />;
+              }
+              return <GuestGreeting />;
+          }
+          function LogoutButton(props) {
+              return(
+                  <button onClick={props.onClick}>
+                  Logout
+                  </button>
+              );
+          }
+      }
+      ReactDOM.render(
+          <LoginControl />,
+          document.getElementById("app")
+      );
+      
+    </script>
+    
+</body>
+</html>
